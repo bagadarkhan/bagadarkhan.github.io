@@ -1,0 +1,127 @@
+/* Genel Ayarlar */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  background-color: #f9f9f9;
+}
+
+body {
+  line-height: 1.6;
+}
+
+/* Container */
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Header */
+header {
+  background-color: #fff;
+  border-bottom: 2px solid #0077cc;
+  padding: 15px 0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+header h1 a {
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+header h1 a:hover {
+  color: #005fa3;
+}
+
+/* Navigation Menu */
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+
+nav ul li a {
+  color: #222;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #0077cc;
+}
+
+/* Hero Bölümü */
+.hero {
+  padding: 40px 0;
+  text-align: center;
+  background: linear-gradient(135deg, #0077cc 0%, #005fa3 100%);
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 30px;
+}
+
+/* Card Grid */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.card h3 a {
+  color: #222;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.card h3 a:hover {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+/* Footer */
+footer {
+  background-color: #222;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  font-size: 0.9rem;
+  margin-top: 40px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+  header h1 a {
+    font-size: 1.5rem;
+  }
+  .hero {
+    padding: 25px 15px;
+    font-size: 0.95rem;
+  }
+}
