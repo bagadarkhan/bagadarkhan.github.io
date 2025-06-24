@@ -156,6 +156,34 @@ footer {
   .images img {
     width: 90%;
   }
+
+   #haber-listesi {
+    grid-template-columns: 1fr; /* Tek sütun mobilde daha iyi görünür */
+    gap: 20px;
+    padding: 0 10px;
+  }
+
+  #haber-listesi div {
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  #haber-listesi h3 a {
+    font-size: 18px;
+  }
+
+  #haber-listesi p {
+    font-size: 13px;
+  }
+
+  #haber-listesi small {
+    font-size: 11px;
+  }
+
+  #Haberler h2 {
+    font-size: 28px;
+    padding: 10px 20px;
+  }
 }
 
 #Haberler {
