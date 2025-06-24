@@ -17,15 +17,70 @@
                 >Uçak Teknolojileri</a
               >
             </li>
+
             <li><a href="yapay-zeka.html">Yapay Zeka</a></li>
-            <li><a href="drone-teknolojileri.html">Drone Teknolojileri</a></li>
-            <li><a href="dijital-donusum.html">Dijital Dönüşüm</a></li>
             <li><a href="iletisim.html">İletişim</a></li>
             <li><a href="hakkimda.html">Hakkımda</a></li>
           </ul>
         </nav>
       </div>
     </header>
+
+    <section id="Haberler">
+      <h2>Güncel Havacılık Haberleri</h2>
+      <div id="haber-listesi"></div>
+    </section>
+
+    <script>
+      const apiKey = "2b491abdb4e34acd98c5d9bdbe84c94c"; // Buraya kendi API anahtarını yaz
+      const url = `https://newsapi.org/v2/everything?q=aviation&language=tr&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
+
+      fetch(url)
+        .then((response) => response.json())
+        .then((data) => {
+          const haberListesi = document.getElementById("haber-listesi");
+          data.articles.forEach((haber) => {
+            const haberDiv = document.createElement("div");
+            haberDiv.innerHTML = `
+          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+          <p>${haber.description || "Açıklama bulunamadı."}</p>
+          <small><em>${new Date(
+            haber.publishedAt
+          ).toLocaleString()}</em></small>
+          <hr>
+        `;
+            haberListesi.appendChild(haberDiv);
+          });
+        })
+        .catch((error) => {
+          document.getElementById("haber-listesi").innerText =
+            "Haberler yüklenemedi.";
+          console.error("Hata:", error);
+        });
+
+      function haberleriGetir() {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            const liste = document.getElementById("haber-listesi");
+            liste.innerHTML = ""; // Eski haberleri temizle
+            data.articles.forEach((haber) => {
+              const div = document.createElement("div");
+              div.innerHTML = `
+          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+          <p>${haber.description || "Açıklama yok."}</p>
+          <small>${new Date(haber.publishedAt).toLocaleString()}</small>
+        `;
+              liste.appendChild(div);
+            });
+          })
+          .catch((err) => console.error(err));
+      }
+
+      haberleriGetir();
+
+      setInterval(haberleriGetir, 300000);
+    </script>
 
     <main class="container">
       <section class="intro">
@@ -73,10 +128,12 @@
       </section>
     </main>
 
-  <footer>
-  <p>© 2025 AeroTechTR. Tüm hakları saklıdır.</p>
-  <p>İletişim: <a href="mailto:yusufiseri266@gmail.com">yusufiseri266@gmail.com</a></p>
-</footer>
-
+    <footer>
+      <p>© 2025 AeroTechTR. Tüm hakları saklıdır.</p>
+      <p>
+        İletişim:
+        <a href="mailto:yusufiseri266@gmail.com">yusufiseri266@gmail.com</a>
+      </p>
+    </footer>
   </body>
 </html>

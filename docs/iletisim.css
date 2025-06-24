@@ -8,7 +8,7 @@
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f0f4f8;
-  color: #222;
+  color: #dad1d1;
   line-height: 1.6;
 }
 
@@ -26,7 +26,7 @@ header {
 }
 
 header h1 a {
-  color: #000; /* Siyah veya istediğin koyu renk */
+  color: #ece4e4; /* Siyah veya istediğin koyu renk */
   text-decoration: none;
   font-weight: bold;
   font-size: 1.8rem;
