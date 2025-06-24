@@ -32,51 +32,25 @@
     </section>
 
     <script>
-      fetch("https://bagadarkhan.github.io.vercel.app/api/haberler")
-        .then((response) => response.json())
+      fetch("https://aerotech-backend.vercel.app/api/haberler")
+        .then((res) => res.json())
         .then((data) => {
-          const haberListesi = document.getElementById("haber-listesi");
+          const liste = document.getElementById("haber-listesi");
           data.articles.forEach((haber) => {
-            const haberDiv = document.createElement("div");
-            haberDiv.innerHTML = `
-          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
-          <p>${haber.description || "Açıklama bulunamadı."}</p>
-          <small><em>${new Date(
-            haber.publishedAt
-          ).toLocaleString()}</em></small>
-          <hr>
-        `;
-            haberListesi.appendChild(haberDiv);
+            const div = document.createElement("div");
+            div.innerHTML = `
+        <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+        <p>${haber.description || "Açıklama bulunamadı."}</p>
+        <small><em>${new Date(haber.publishedAt).toLocaleString()}</em></small>
+      `;
+            liste.appendChild(div);
           });
         })
-        .catch((error) => {
-          document.getElementById("haber-listesi").innerText =
-            "Haberler yüklenemedi.";
-          console.error("Hata:", error);
+        .catch((err) => {
+          document.getElementById("haber-listesi").innerHTML =
+            "<p>Haberler yüklenemedi.</p>";
+          console.error("Hata:", err);
         });
-
-      function haberleriGetir() {
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            const liste = document.getElementById("haber-listesi");
-            liste.innerHTML = ""; // Eski haberleri temizle
-            data.articles.forEach((haber) => {
-              const div = document.createElement("div");
-              div.innerHTML = `
-          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
-          <p>${haber.description || "Açıklama yok."}</p>
-          <small>${new Date(haber.publishedAt).toLocaleString()}</small>
-        `;
-              liste.appendChild(div);
-            });
-          })
-          .catch((err) => console.error(err));
-      }
-
-      haberleriGetir();
-
-      setInterval(haberleriGetir, 300000);
     </script>
 
     <main class="container">
