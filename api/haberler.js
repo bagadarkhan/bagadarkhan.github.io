@@ -21,7 +21,7 @@ module.exports = async function handler(req, res) {
       params: {
         q: q,
         language: "tr",
-        pageSize: 20,
+        pageSize: 100,
         sortBy: "publishedAt",
         apiKey: process.env.NEWS_API_KEY,
       },
