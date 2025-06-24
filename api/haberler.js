@@ -2,20 +2,22 @@ const axios = require("axios");
 
 module.exports = async function handler(req, res) {
   try {
-    // URL'den kategori parametresini al
-    const kategori = req.query.kategori || "genel";
+    const kategori = req.query.kategori;
+const qParam = req.query.q;
 
-    // Kategoriye göre sorgu belirle
-    let q = "";
-    if (kategori === "yapay-zeka") {
-      q = "artificial intelligence OR yapay zeka";
-    } else if (kategori === "ucak") {
-      q = "aviation OR airplane OR uçak";
-    } else if (kategori === "drone") {
-      q = "drone OR otonom hava aracı";
-    } else {
-      q = "aviation OR artificial intelligence OR drone";
-    }
+let q = "";
+
+if (qParam) {
+  q = qParam;
+} else if (kategori === "yapay-zeka") {
+  q = "artificial intelligence OR yapay zeka";
+} else if (kategori === "ucak") {
+  q = "aviation OR airplane OR uçak";
+} else if (kategori === "drone") {
+  q = "drone OR otonom hava aracı";
+} else {
+  q = "aviation OR artificial intelligence OR drone";
+}
 
     const response = await axios.get("https://newsapi.org/v2/everything", {
       params: {
