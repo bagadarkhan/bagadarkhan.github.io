@@ -32,7 +32,7 @@
     </section>
 
    <script>
-    fetch("/api/haberler")
+fetch("/api/haberler?kategori=ucak")
       .then((res) => res.json())
       .then((data) => {
         const liste = document.getElementById("haber-listesi");

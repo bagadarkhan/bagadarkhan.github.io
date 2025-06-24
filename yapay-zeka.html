@@ -28,7 +28,7 @@
     </section>
 
     <script>
-      fetch("/api/haberler")
+      fetch("/api/haberler?kategori=yapay-zeka")
         .then((res) => res.json())
         .then((data) => {
           const liste = document.getElementById("haber-listesi");
