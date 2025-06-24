@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Uçak Teknolojileri - F-35 - AeroTechTR</title>
+    <link rel="stylesheet" href="ucak-teknolojileri.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1><a href="index.html">AeroTechTR</a></h1>
+        <nav>
+          <ul>
+            <li>
+              <a href="ucak-teknolojileri.html" class="active"
+                >Uçak Teknolojileri</a
+              >
+            </li>
+
+            <li><a href="yapay-zeka.html">Yapay Zeka</a></li>
+            <li><a href="iletisim.html">İletişim</a></li>
+            <li><a href="hakkimda.html">Hakkımda</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <section id="Haberler">
+      <h2>Güncel Havacılık Haberleri</h2>
+      <div id="haber-listesi"></div>
+    </section>
+
+    <script>
+      fetch("https://bagadarkhan.github.io.vercel.app/api/haberler")
+        .then((response) => response.json())
+        .then((data) => {
+          const haberListesi = document.getElementById("haber-listesi");
+          data.articles.forEach((haber) => {
+            const haberDiv = document.createElement("div");
+            haberDiv.innerHTML = `
+          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+          <p>${haber.description || "Açıklama bulunamadı."}</p>
+          <small><em>${new Date(
+            haber.publishedAt
+          ).toLocaleString()}</em></small>
+          <hr>
+        `;
+            haberListesi.appendChild(haberDiv);
+          });
+        })
+        .catch((error) => {
+          document.getElementById("haber-listesi").innerText =
+            "Haberler yüklenemedi.";
+          console.error("Hata:", error);
+        });
+
+      function haberleriGetir() {
+        fetch(url)
+          .then((res) => res.json())
+          .then((data) => {
+            const liste = document.getElementById("haber-listesi");
+            liste.innerHTML = ""; // Eski haberleri temizle
+            data.articles.forEach((haber) => {
+              const div = document.createElement("div");
+              div.innerHTML = `
+          <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+          <p>${haber.description || "Açıklama yok."}</p>
+          <small>${new Date(haber.publishedAt).toLocaleString()}</small>
+        `;
+              liste.appendChild(div);
+            });
+          })
+          .catch((err) => console.error(err));
+      }
+
+      haberleriGetir();
+
+      setInterval(haberleriGetir, 300000);
+    </script>
+
+    <main class="container">
+      <section class="intro">
+        <h2>F-35 Lightning II - Modern Uçak Teknolojileri</h2>
+        <p>
+          F-35 Lightning II, gelişmiş stealth teknolojisi, yüksek performans ve
+          entegre aviyonik sistemleriyle dünyanın en gelişmiş çok rollü savaş
+          uçağıdır.
+        </p>
+      </section>
+
+      <section class="features">
+        <h3>Öne Çıkan Özellikler</h3>
+        <ul>
+          <li>
+            <strong>Stealth Teknolojisi:</strong> Radar görünürlüğünü minimize
+            eden özel kaplamalar ve tasarım.
+          </li>
+          <li>
+            <strong>Süper Seyir Kabiliyeti:</strong> Yüksek hızda, yakıt
+            tüketimini optimize eden performans.
+          </li>
+          <li>
+            <strong>Entegre Aviyonikler:</strong> Gelişmiş sensörler, radar ve
+            iletişim sistemleri.
+          </li>
+          <li>
+            <strong>Çok Rollü Görevler:</strong> Hava üstünlüğü, yer hedeflerine
+            saldırı, elektronik harp ve keşif.
+          </li>
+          <li>
+            <strong>Gelişmiş Silah Sistemleri:</strong> İçten silah yuvaları ile
+            stealth performansını korur.
+          </li>
+        </ul>
+      </section>
+
+      <section class="gallery">
+        <h3>Galeri</h3>
+        <div class="images">
+          <img src="f35.avif" alt="" />
+          <img src="f35-2.avif" alt="" />
+          <img src="f35-3.avif" alt="" />
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 AeroTechTR. Tüm hakları saklıdır.</p>
+      <p>
+        İletişim:
+        <a href="mailto:yusufiseri266@gmail.com">yusufiseri266@gmail.com</a>
+      </p>
+    </footer>
+  </body>
+</html>
