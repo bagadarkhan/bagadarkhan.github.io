@@ -35,7 +35,8 @@
       const apiKey = "2b491abdb4e34acd98c5d9bdbe84c94c"; // Buraya kendi API anahtarını yaz
       const url = `https://newsapi.org/v2/everything?q=aviation&language=tr&sortBy=publishedAt&pageSize=5&apiKey=${apiKey}`;
 
-      fetch(url)
+      fetch("https://seninbackendadresin.com/api/haberler")
+
         .then((response) => response.json())
         .then((data) => {
           const haberListesi = document.getElementById("haber-listesi");

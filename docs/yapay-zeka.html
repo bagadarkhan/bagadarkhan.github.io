@@ -31,7 +31,7 @@
       const apiKey = "2b491abdb4e34acd98c5d9bdbe84c94c"; // kendi NewsAPI anahtarını yaz
       const url = `https://newsapi.org/v2/everything?q=artificial%20intelligence&language=tr&pageSize=6&sortBy=publishedAt&apiKey=${apiKey}`;
 
-      fetch(url)
+      fetch("https://seninbackendadresin.com/api/haberler")
         .then((res) => res.json())
         .then((data) => {
           const liste = document.getElementById("haber-listesi");
