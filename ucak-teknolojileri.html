@@ -31,32 +31,33 @@
       <div id="haber-listesi"></div>
     </section>
 
-   <script>
-fetch("/api/haberler?kategori=ucak")
-      .then((res) => res.json())
-      .then((data) => {
-        const liste = document.getElementById("haber-listesi");
-        if (!data.articles || data.articles.length === 0) {
-          liste.innerHTML = "<p>Haber bulunamadı.</p>";
-          return;
-        }
-        data.articles.forEach((haber) => {
-          const div = document.createElement("div");
-          div.classList.add("haber-item");
-          div.innerHTML = `
-            <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
-            <p>${haber.description || "Açıklama yok."}</p>
-            <small>${new Date(haber.publishedAt).toLocaleString()}</small>
-          `;
-          liste.appendChild(div);
+    <script>
+      fetch("/api/haberler?kategori=ucak")
+        .then((res) => res.json())
+        .then((data) => {
+          const liste = document.getElementById("haber-listesi");
+          if (!data.articles || data.articles.length === 0) {
+            liste.innerHTML = "<p>Haber bulunamadı.</p>";
+            return;
+          }
+          data.articles.forEach((haber) => {
+            const div = document.createElement("div");
+            div.classList.add("haber-item");
+            div.innerHTML = `
+    <img src="${haber.urlToImage}" alt="Haber Görseli" class="haber-resim" />
+    <h3><a href="${haber.url}" target="_blank">${haber.title}</a></h3>
+    <p>${haber.description || "Açıklama yok."}</p>
+    <small>${new Date(haber.publishedAt).toLocaleString()}</small>
+  `;
+            liste.appendChild(div);
+          });
+        })
+        .catch((err) => {
+          document.getElementById("haber-listesi").innerHTML =
+            "<p>Haberler yüklenemedi.</p>";
+          console.error(err);
         });
-      })
-      .catch((err) => {
-        document.getElementById("haber-listesi").innerHTML =
-          "<p>Haberler yüklenemedi.</p>";
-        console.error(err);
-      });
-  </script>
+    </script>
 
     <main class="container">
       <section class="intro">

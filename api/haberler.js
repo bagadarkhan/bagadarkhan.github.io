@@ -34,3 +34,4 @@ if (qParam) {
     res.status(500).json({ hata: "Haberler yüklenemedi", detay: error.message });
   }
 };
+
